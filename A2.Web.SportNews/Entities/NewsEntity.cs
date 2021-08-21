@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace A2.Web.SportNews.Entities
 {
-    public class NewsEntity
+    public class NewsEntity : Entity
     {
-        public int Id { get; set; }
         public string Title { get; set; }
         public string TextPreview { get; set; }
         public string Content { get; set; }

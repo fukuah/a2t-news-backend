@@ -2,7 +2,7 @@
 
 namespace A2.Web.SportNews.Models.Contacts
 {
-    public class ContactsPersonsModel
+    public class ContactPersonsModel
     {
         public ICollection<ContactPersonModel> ContactPersons { get; set; }
     }

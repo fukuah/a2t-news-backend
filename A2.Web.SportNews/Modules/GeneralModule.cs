@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using A2.Web.SportNews.Abstract;
+﻿using A2.Web.SportNews.Abstract;
 using A2.Web.SportNews.Entities;
 using A2.Web.SportNews.Repositories;
 using A2.Web.SportNews.Services;
@@ -14,8 +10,10 @@ namespace A2.Web.SportNews.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterType<NewsRepository>().As<IRepository<NewsEntity>>();
+            builder.RegisterType<ContactPersonsService>().As<IContactPersonsService>();
             builder.RegisterType<NewsService>().As<INewsService>();
+            builder.RegisterType<ContactPersonRepository>().As<IRepository<ContactPersonEntity>>();
+            builder.RegisterType<NewsRepository>().As<IRepository<NewsEntity>>();
         }
     }
 }
