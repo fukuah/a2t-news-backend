@@ -19,6 +19,17 @@ namespace A2.Web.SportNews.Core.Mappers
             };
         }
 
+        public static PaginationModel<NewsItemModel> ToItemModel(this Pagination<NewsCore> cores)
+        {
+            return new PaginationModel<NewsItemModel>
+            {
+                Count = cores.Count,
+                Limit = cores.Limit,
+                Offset = cores.Offset,
+                Models = cores.Items.Select(x => x.ToItemModel()).ToList()
+            };
+        }
+
         public static NewsPreviewModel ToModel(this NewsCore core)
         {
             return new NewsPreviewModel
@@ -27,6 +38,16 @@ namespace A2.Web.SportNews.Core.Mappers
                 ImageLink = core.ImageLink,
                 PublishDate = core.PublishDate,
                 TextPreview = core.TextPreview,
+                Title = core.Title
+            };
+        }
+
+        public static NewsItemModel ToItemModel(this NewsCore core)
+        {
+            return new NewsItemModel
+            {
+                Id = core.Id,
+                PublishDate = core.PublishDate,
                 Title = core.Title
             };
         }

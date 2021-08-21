@@ -27,6 +27,14 @@ namespace A2.Web.SportNews.Controllers
             return news.ToModel();
         }
 
+        [HttpPost, Route("items")]
+        public async Task<PaginationModel<NewsItemModel>> GetItemsPageAsync([FromBody] NewsPageRequestModel model)
+        {
+            var news = await _newsService.GetNewsPageAsync(model.ToCore());
+
+            return news.ToItemModel();
+        }
+
         [HttpGet, Route("{id}")]
         public async Task<NewsArticleModel> GetArticle([FromRoute] int id)
         {
