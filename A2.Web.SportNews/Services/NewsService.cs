@@ -24,7 +24,7 @@ namespace A2.Web.SportNews.Services
 
             return new Pagination<NewsCore>
             {
-                Count = await _newsRepository.Count(),
+                Count = _newsRepository.Count(),
                 Offset = request.Offset,
                 Limit = request.Limit,
                 Items = news.Select(x => x.ToCore()).ToList()

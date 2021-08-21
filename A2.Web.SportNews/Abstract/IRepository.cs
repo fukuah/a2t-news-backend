@@ -11,6 +11,6 @@ namespace A2.Web.SportNews.Abstract
         Task<NewsEntity> Update(NewsEntity entity);
         void Add(NewsEntity entity);
         void Delete(int id);
-        Task<int> Count();
+        int Count();
     }
 }

@@ -20,7 +20,7 @@ namespace A2.Web.SportNews.Controllers
         }
 
         [HttpPost]
-        public async Task<PaginationModel<NewsPreviewModel>> GetPageAsync(NewsPageRequestModel model)
+        public async Task<PaginationModel<NewsPreviewModel>> GetPageAsync([FromBody] NewsPageRequestModel model)
         {
             var news = await _newsService.GetNewsPageAsync(model.ToCore());
 
@@ -34,7 +34,7 @@ namespace A2.Web.SportNews.Controllers
         }
 
         [HttpPost, Route("create")]
-        public async Task<ActionResult> CreateArticle(NewsCreateRequestModel model)
+        public ActionResult CreateArticle([FromBody] NewsCreateRequestModel model)
         {
             _newsService.AddArticle(model.ToCore());
 
