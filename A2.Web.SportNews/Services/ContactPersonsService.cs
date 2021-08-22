@@ -28,6 +28,9 @@ namespace A2.Web.SportNews.Services
 
         public async Task UpdateContact(ContactPersonCore contact, string fileB64)
         {
+            if (contact.Id == default)
+                throw new ArgumentException(nameof(contact));
+
             if (!string.IsNullOrWhiteSpace(fileB64))
                 contact.PhotoLink = Path.GetRandomFileName() + ".png";
 
