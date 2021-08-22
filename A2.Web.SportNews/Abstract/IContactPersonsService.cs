@@ -9,8 +9,8 @@ namespace A2.Web.SportNews.Abstract
     public interface IContactPersonsService
     {
         Task<ICollection<ContactPersonCore>> GetAll();
-        void UpdateContact(ContactPersonCore contact);
-        void AddContact(ContactPersonCore contact);
+        Task UpdateContact(ContactPersonCore contact, string photoFile);
+        Task AddContact(ContactPersonCore contact, string photoFile);
         void DeleteContact(int id);
     }
 }

@@ -5,6 +5,6 @@
         public int Id { get; set; }
         public string FullName { get; set; }
         public string FormalLink { get; set; }
-        public string PhotoLink { get; set; }
+        public string PhotoFile { get; set; }
     }
 }

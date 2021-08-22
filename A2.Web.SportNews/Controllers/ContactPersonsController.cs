@@ -42,19 +42,19 @@ namespace A2.Web.SportNews.Controllers
         }
 
         [Authorize]
-        [HttpPost, Route("create")]
+        [HttpPost, Route("create"), DisableRequestSizeLimit]
         public ActionResult AddContact(ContactPersonModel model)
         {
-            _personsService.AddContact(model.ToCore());
+            _personsService.AddContact(model.ToCore(), model.PhotoFile);
 
             return new OkResult();
         }
 
         [Authorize]
-        [HttpPut, Route("{id}")]
+        [HttpPut, Route("{id}"), DisableRequestSizeLimit]
         public ActionResult UpdateContact(ContactPersonModel model)
         {
-            _personsService.UpdateContact(model.ToCore());
+            _personsService.UpdateContact(model.ToCore(), model.PhotoFile);
 
             return new OkResult();
         }

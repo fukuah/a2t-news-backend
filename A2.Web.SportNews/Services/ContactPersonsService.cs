@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using A2.Web.SportNews.Abstract;
@@ -12,10 +13,12 @@ namespace A2.Web.SportNews.Services
     public class ContactPersonsService : IContactPersonsService
     {
         private readonly IRepository<ContactPersonEntity> _repository;
+        private readonly FileUploadService _fileUploadService;
 
-        public ContactPersonsService(IRepository<ContactPersonEntity> repository)
+        public ContactPersonsService(IRepository<ContactPersonEntity> repository, FileUploadService fileUploadService)
         {
             _repository = repository ?? throw new ArgumentNullException(nameof(repository));
+            _fileUploadService = fileUploadService ?? throw new ArgumentNullException(nameof(fileUploadService));
         }
 
         public async Task<ICollection<ContactPersonCore>> GetAll()
@@ -23,14 +26,26 @@ namespace A2.Web.SportNews.Services
             return (await _repository.GetEntities())?.Select(x => x.ToCore()).ToList();
         }
 
-        public void UpdateContact(ContactPersonCore contact)
+        public async Task UpdateContact(ContactPersonCore contact, string fileB64)
         {
+            if (!string.IsNullOrWhiteSpace(fileB64))
+                contact.PhotoLink = Path.GetRandomFileName() + ".png";
+
             _repository.Update(contact.ToEntity());
+
+            if (!string.IsNullOrWhiteSpace(contact.PhotoLink))
+                await _fileUploadService.Upload(contact.PhotoLink, fileB64);
         }
 
-        public void AddContact(ContactPersonCore contact)
+        public async Task AddContact(ContactPersonCore contact, string fileB64)
         {
+            if (!string.IsNullOrWhiteSpace(fileB64))
+                contact.PhotoLink = Path.GetRandomFileName() + ".png";
+
             _repository.Add(contact.ToEntity());
+
+            if (!string.IsNullOrWhiteSpace(contact.PhotoLink))
+                await _fileUploadService.Upload(contact.PhotoLink, fileB64);
         }
 
         public void DeleteContact(int id)
