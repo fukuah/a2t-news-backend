@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace A2.Web.SportNews.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("contacts")]
     public class ContactPersonsController
     {
         private readonly IContactPersonsService _personsService;
