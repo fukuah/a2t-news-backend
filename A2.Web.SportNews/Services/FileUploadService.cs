@@ -31,7 +31,7 @@ namespace A2.Web.SportNews.Services
             if (bytes.Length > MaxMbFileSize * 1024 * 1024)
                 throw new FileLoadException($"File is too large to load. The size restriction is {MaxMbFileSize}Mb.");
 
-            var filePath = Path.Combine(new[] {_hostingEnvironment.WebRootPath, BaseFileSavePath, fileName + ".png"});
+            var filePath = Path.Combine(new[] {_hostingEnvironment.WebRootPath, BaseFileSavePath, fileName});
 
             await File.WriteAllBytesAsync(filePath, bytes);
         }
