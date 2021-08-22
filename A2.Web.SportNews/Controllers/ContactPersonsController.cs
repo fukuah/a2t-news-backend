@@ -5,12 +5,13 @@ using System.Threading.Tasks;
 using A2.Web.SportNews.Abstract;
 using A2.Web.SportNews.Core.Mappers;
 using A2.Web.SportNews.Models.Contacts;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace A2.Web.SportNews.Controllers
 {
     [ApiController]
-    [Route("contacts")]
+    [Route("[controller]")]
     public class ContactPersonsController
     {
         private readonly IContactPersonsService _personsService;
@@ -31,6 +32,7 @@ namespace A2.Web.SportNews.Controllers
             };
         }
 
+        [Authorize]
         [HttpDelete, Route("{id}")]
         public ActionResult DeleteContact(int id)
         {
@@ -39,6 +41,7 @@ namespace A2.Web.SportNews.Controllers
             return new OkResult();
         }
 
+        [Authorize]
         [HttpPost, Route("create")]
         public ActionResult AddContact(ContactPersonModel model)
         {
@@ -47,6 +50,7 @@ namespace A2.Web.SportNews.Controllers
             return new OkResult();
         }
 
+        [Authorize]
         [HttpPut, Route("{id}")]
         public ActionResult UpdateContact(ContactPersonModel model)
         {

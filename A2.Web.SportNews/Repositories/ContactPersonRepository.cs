@@ -10,6 +10,6 @@ namespace A2.Web.SportNews.Repositories
         {
         }
 
-        protected override IQueryable<ContactPersonEntity> ApplySort(IQueryable<ContactPersonEntity> query) => query;
+        protected override IQueryable<ContactPersonEntity> ApplySort(IQueryable<ContactPersonEntity> query) => query.OrderByDescending(x => x.Id);
     }
 }

@@ -14,6 +14,7 @@ namespace A2.Web.SportNews.Modules
             builder.RegisterType<NewsService>().As<INewsService>();
             builder.RegisterType<ContactPersonRepository>().As<IRepository<ContactPersonEntity>>();
             builder.RegisterType<NewsRepository>().As<IRepository<NewsEntity>>();
+            builder.RegisterType<FileUploadService>().AsSelf();
         }
     }
 }

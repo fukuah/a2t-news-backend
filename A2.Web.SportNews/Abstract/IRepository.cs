@@ -10,7 +10,7 @@ namespace A2.Web.SportNews.Abstract
         Task<ICollection<TEntity>> GetEntities(int? limit = null, int? offset = null);
         Task<TEntity> GetEntity(int id);
         void Update(TEntity entity);
-        void Add(TEntity entity);
+        int Add(TEntity entity);
         void Delete(int id);
         int Count();
     }

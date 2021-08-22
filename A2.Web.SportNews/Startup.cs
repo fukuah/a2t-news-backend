@@ -1,3 +1,4 @@
+using A2.Web.SportNews.Controllers;
 using A2.Web.SportNews.Database;
 using A2.Web.SportNews.Modules;
 using Autofac;
@@ -7,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace A2.Web.SportNews
 {
@@ -36,6 +39,32 @@ namespace A2.Web.SportNews
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 }));
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.RequireHttpsMetadata = false;
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        // укзывает, будет ли валидироваться издатель при валидации токена
+                        ValidateIssuer = true,
+                        // строка, представляющая издателя
+                        ValidIssuer = AuthOptions.Issuer,
+
+                        // будет ли валидироваться потребитель токена
+                        ValidateAudience = true,
+                        // установка потребителя токена
+                        ValidAudience = AuthOptions.Audience,
+                        // будет ли валидироваться время существования
+                        ValidateLifetime = true,
+
+                        // установка ключа безопасности
+                        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                        // валидация ключа безопасности
+                        ValidateIssuerSigningKey = true,
+                    };
+                });
+
         }
 
         public void ConfigureContainer(ContainerBuilder builder)
@@ -58,6 +87,8 @@ namespace A2.Web.SportNews
             //app.UseHttpsRedirection();
 
             app.UseCors(_myAllowSpecificOrigins);
+            
+            app.UseAuthentication();
 
             app.UseRouting();
 

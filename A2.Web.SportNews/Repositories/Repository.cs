@@ -24,6 +24,7 @@ namespace A2.Web.SportNews.Repositories
 
         public async Task<ICollection<TEntity>> GetEntities(int? limit, int? offset)
         {
+            // TODO add cancellation token
             var query = _context.Set<TEntity>().Select(x => x);
 
             query = ApplySort(query);
@@ -64,14 +65,15 @@ namespace A2.Web.SportNews.Repositories
             _context.SaveChanges();
         }
 
-        public void Add(TEntity entity)
+        public int Add(TEntity entity)
         {
             // TODO Add exceptions & handling
             if (entity == null)
-                return;
+                throw new ArgumentException(nameof(entity));
 
             _context.Set<TEntity>().Add(entity);
             _context.SaveChanges();
+            return entity.Id;
         }
 
         public void Delete(int id)

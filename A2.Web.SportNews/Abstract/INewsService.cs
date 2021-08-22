@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using A2.Web.SportNews.Core;
 using A2.Web.SportNews.Core.Requests;
+using Microsoft.AspNetCore.Http;
 
 namespace A2.Web.SportNews.Abstract
 {
@@ -10,7 +11,7 @@ namespace A2.Web.SportNews.Abstract
 
         Task<NewsCore> GetNewsByIdAsync(int id);
 
-        void AddArticle(NewsCore article);
+        Task AddArticle(NewsCore article, string fileB64);
         void DeleteArticle(int id);
     }
 }
