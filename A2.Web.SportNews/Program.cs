@@ -1,11 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
 using Autofac.Extensions.DependencyInjection;
 
@@ -18,17 +15,7 @@ namespace A2.Web.SportNews
             try
             {
                 IHostBuilder hostBuilder = CreateHostBuilder(args);
-
-                var host = Host.CreateDefaultBuilder(args)
-                    .UseServiceProviderFactory(new AutofacServiceProviderFactory())
-                    .ConfigureWebHostDefaults(webHostBuilder => {
-                        webHostBuilder
-                            .UseContentRoot(Directory.GetCurrentDirectory())
-                            .UseIISIntegration()
-                            .UseStartup<Startup>();
-                    })
-                    .Build();
-
+                var host = hostBuilder.Build();
                 await host.RunAsync();
             }
             catch (Exception e)
@@ -39,9 +26,22 @@ namespace A2.Web.SportNews
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
+                .ConfigureWebHostDefaults(webHostBuilder =>
                 {
-                    webBuilder.UseStartup<Startup>();
-                });
+                    webHostBuilder
+                        .ConfigureAppConfiguration((hostingContext, config) =>
+                        {
+                            var configName = hostingContext.HostingEnvironment.EnvironmentName + ".json";
+
+                            config.SetBasePath(Directory.GetCurrentDirectory());
+                            config.AddJsonFile("Config/" + configName, optional: false, reloadOnChange: false);
+
+                            config.Build();
+                        })
+                        .UseContentRoot(Directory.GetCurrentDirectory())
+                        .UseIISIntegration()
+                        .UseStartup<Startup>();
+                })
+                .UseServiceProviderFactory(new AutofacServiceProviderFactory());
     }
 }

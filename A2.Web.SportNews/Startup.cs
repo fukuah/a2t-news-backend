@@ -1,6 +1,6 @@
-using A2.Web.SportNews.Controllers;
 using A2.Web.SportNews.Database;
 using A2.Web.SportNews.Modules;
+using A2.Web.SportNews.Options;
 using Autofac;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +40,8 @@ namespace A2.Web.SportNews
                         .AllowAnyMethod();
                 }));
 
+            var authOptions = new AuthOptions();
+            Configuration.GetSection(AuthOptions.Section).Bind(authOptions);
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -49,17 +51,17 @@ namespace A2.Web.SportNews
                         // укзывает, будет ли валидироваться издатель при валидации токена
                         ValidateIssuer = true,
                         // строка, представляющая издателя
-                        ValidIssuer = AuthOptions.Issuer,
+                        ValidIssuer = authOptions.Issuer,
 
                         // будет ли валидироваться потребитель токена
                         ValidateAudience = true,
                         // установка потребителя токена
-                        ValidAudience = AuthOptions.Audience,
+                        ValidAudience = authOptions.Audience,
                         // будет ли валидироваться время существования
                         ValidateLifetime = true,
 
                         // установка ключа безопасности
-                        IssuerSigningKey = AuthOptions.GetSymmetricSecurityKey(),
+                        IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
                         // валидация ключа безопасности
                         ValidateIssuerSigningKey = true,
                     };
@@ -70,6 +72,7 @@ namespace A2.Web.SportNews
         public void ConfigureContainer(ContainerBuilder builder)
         {
             builder.RegisterModule<GeneralModule>();
+            builder.RegisterModule<OptionsModule>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

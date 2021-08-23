@@ -4,6 +4,6 @@
     {
         public string FullName { get; set; }
         public string FormalLink { get; set; }
-        public byte[] PhotoData { get; set; }
+        public string PhotoFile { get; set; }
     }
 }

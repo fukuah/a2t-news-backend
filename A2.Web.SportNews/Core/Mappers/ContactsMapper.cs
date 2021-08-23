@@ -22,7 +22,14 @@ namespace A2.Web.SportNews.Core.Mappers
             {
                 Id = model.Id,
                 FullName = model.FullName,
-                PhotoLink = model.PhotoFile,
+                FormalLink = model.FormalLink
+            };
+        }
+        public static ContactPersonCore ToCore(this ContactPersonCreateRequestModel model)
+        {
+            return new ContactPersonCore
+            {
+                FullName = model.FullName,
                 FormalLink = model.FormalLink
             };
         }

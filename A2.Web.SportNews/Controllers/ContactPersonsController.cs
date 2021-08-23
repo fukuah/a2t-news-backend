@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using A2.Web.SportNews.Abstract;
@@ -43,7 +42,7 @@ namespace A2.Web.SportNews.Controllers
 
         [Authorize]
         [HttpPost, Route("create"), DisableRequestSizeLimit]
-        public ActionResult AddContact(ContactPersonModel model)
+        public ActionResult AddContact(ContactPersonCreateRequestModel model)
         {
             _personsService.AddContact(model.ToCore(), model.PhotoFile);
 
