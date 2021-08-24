@@ -1,11 +1,15 @@
 {
-  "Api": {
+  "App": {
     "FileSavePath": "C:/Users/zorin/source/repos/A2.Web.SportNews/A2.Web.SportNews/Resources/Images"
+  },
+  "CorsPolicy": {
+    "Key": "AllowAny",
+    "AllowedHosts": [] 
   },
   "Auth": {
     "Issuer": "MyAuthServer",
     "Audience": "MyAuthClient",
     "Lifetime": "300",
     "Key": "mysupersecret_secretkey"
-  } 
+  }
 }

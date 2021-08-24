@@ -22,26 +22,28 @@ namespace A2.Web.SportNews
 
         public IConfiguration Configuration { get; }
 
-        private readonly string _myAllowSpecificOrigins = "_myAllowSpecificOrigins";
-
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase("InMemoryDb"));
 
             services.AddControllers();
+            var corsOptions = new CorsPolicyOptions();
+            Configuration.GetSection(CorsPolicyOptions.SectionName).Bind(corsOptions);
             services.AddCors(options =>
-                options.AddPolicy(name: _myAllowSpecificOrigins, builder =>
+                options.AddPolicy(name: corsOptions.Key, builder =>
                 {
+                    if (corsOptions.AllowedHosts == null || corsOptions.AllowedHosts.Length == 0)
+                        builder.AllowAnyOrigin();
+                    else 
+                        builder.WithOrigins(corsOptions.AllowedHosts);
                     builder
-                        .AllowAnyOrigin()
-                        //.WithOrigins("http://localhost:4200")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 }));
 
             var authOptions = new AuthOptions();
-            Configuration.GetSection(AuthOptions.Section).Bind(authOptions);
+            Configuration.GetSection(AuthOptions.SectionName).Bind(authOptions);
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
@@ -89,7 +91,9 @@ namespace A2.Web.SportNews
             // TODO enable after SSL cert is ready
             //app.UseHttpsRedirection();
 
-            app.UseCors(_myAllowSpecificOrigins);
+            var corsPolicy = new CorsPolicyOptions();
+            Configuration.GetSection(CorsPolicyOptions.SectionName).Bind(corsPolicy);
+            app.UseCors(corsPolicy.Key);
             
             app.UseAuthentication();
 

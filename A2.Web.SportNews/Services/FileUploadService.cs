@@ -9,9 +9,9 @@ namespace A2.Web.SportNews.Services
     public class FileUploadService
     {
         public const int MaxMbFileSize = 10;
-        private readonly ApiOptions _options;
+        private readonly AppOptions _options;
 
-        public FileUploadService(ApiOptions options)
+        public FileUploadService(AppOptions options)
         {
             _options = options ?? throw new ArgumentNullException(nameof(options));
         }
@@ -25,7 +25,7 @@ namespace A2.Web.SportNews.Services
             if (bytes.Length > MaxMbFileSize * 1024 * 1024)
                 throw new FileLoadException($"File is too large to load. The size restriction is {MaxMbFileSize}Mb.");
 
-            var filePath = Path.Combine(new[] {_options.FileSavePath, fileName});
+            var filePath = Path.Combine(new[] {_options.FileSaveAbsolutePath, fileName});
 
             await File.WriteAllBytesAsync(filePath, bytes);
         }

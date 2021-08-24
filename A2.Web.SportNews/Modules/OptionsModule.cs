@@ -11,8 +11,9 @@ namespace A2.Web.SportNews.Modules
     {
         protected override void Load(ContainerBuilder builder)
         {
-            builder.RegisterOptions<ApiOptions>(ApiOptions.Section);
-            builder.RegisterOptions<AuthOptions>(AuthOptions.Section);
+            builder.RegisterOptions<AppOptions>(AppOptions.SectionName);
+            builder.RegisterOptions<AuthOptions>(AuthOptions.SectionName);
+            builder.RegisterOptions<CorsPolicyOptions>(CorsPolicyOptions.SectionName);
         }
     }
 }

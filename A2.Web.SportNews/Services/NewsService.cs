@@ -40,12 +40,12 @@ namespace A2.Web.SportNews.Services
         public async Task AddArticle(NewsCore article, string fileB64)
         {
             if (!string.IsNullOrWhiteSpace(fileB64))
-                article.ImageFileB64 = Path.GetRandomFileName() + ".png";
+                article.ImageLink = Path.GetRandomFileName() + ".png";
 
             _newsRepository.Add(article.ToEntity());
 
-            if(!string.IsNullOrWhiteSpace(article.ImageFileB64))
-                await _fileUploadService.Upload(article.ImageFileB64, fileB64);
+            if(!string.IsNullOrWhiteSpace(article.ImageLink))
+                await _fileUploadService.Upload(article.ImageLink, fileB64);
         }
 
         public void DeleteArticle(int id)
