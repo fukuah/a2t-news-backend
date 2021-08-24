@@ -64,7 +64,7 @@ namespace A2.Web.SportNews.Repositories
 
             var entry = _context.Entry(entityToUpdate);
             entry.CurrentValues.SetValues(updated);
-            if (entityToUpdate.ImageLink == null)
+            if (string.IsNullOrWhiteSpace(entityToUpdate.ImageLink))
                 entry.Property(x => x.ImageLink).IsModified = false;
             _context.SaveChanges();
         }
