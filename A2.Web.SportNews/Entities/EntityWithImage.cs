@@ -5,9 +5,8 @@ using System.Threading.Tasks;
 
 namespace A2.Web.SportNews.Entities
 {
-    public class ContactPersonEntity : EntityWithImage
+    public class EntityWithImage : Entity
     {
-        public string FullName { get; set; }
-        public string FormalLink { get; set; }
+        public string ImageLink { get; set; }
     }
 }

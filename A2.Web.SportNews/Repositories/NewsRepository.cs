@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using A2.Web.SportNews.Database;
 using A2.Web.SportNews.Entities;
 
@@ -14,5 +11,6 @@ namespace A2.Web.SportNews.Repositories
         }
 
         protected override IQueryable<NewsEntity> ApplySort(IQueryable<NewsEntity> query) => query.OrderByDescending(x => x.PublishDate);
+        
     }
 }

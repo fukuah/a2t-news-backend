@@ -5,12 +5,11 @@ using System.Threading.Tasks;
 
 namespace A2.Web.SportNews.Entities
 {
-    public class NewsEntity : Entity
+    public class NewsEntity : EntityWithImage
     {
         public string Title { get; set; }
         public string TextPreview { get; set; }
         public string Content { get; set; }
-        public string ImageLink { get; set; }
         public DateTime PublishDate { get; set; }
         public DateTime CreatedTime { get; set; }
     }

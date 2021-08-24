@@ -7,11 +7,12 @@ using A2.Web.SportNews.Abstract;
 using A2.Web.SportNews.Database;
 using A2.Web.SportNews.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace A2.Web.SportNews.Repositories
 {
     public abstract class Repository<TEntity> : IRepository<TEntity>
-        where TEntity : Entity
+        where TEntity : EntityWithImage
     {
         private readonly ApiContext _context;
 
@@ -61,7 +62,10 @@ namespace A2.Web.SportNews.Repositories
             var entityToUpdate = _context.Set<TEntity>().FirstOrDefault(x => x.Id == updated.Id);
             if (entityToUpdate == null) return;
 
-            _context.Entry(entityToUpdate).CurrentValues.SetValues(updated);
+            var entry = _context.Entry(entityToUpdate);
+            entry.CurrentValues.SetValues(updated);
+            if (entityToUpdate.ImageLink == null)
+                entry.Property(x => x.ImageLink).IsModified = false;
             _context.SaveChanges();
         }
 

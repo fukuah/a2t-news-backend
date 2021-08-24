@@ -40,7 +40,7 @@ namespace A2.Web.SportNews.Core.Mappers
             {
                 Id = model.Id,
                 FullName = model.FullName,
-                PhotoLink = model.PhotoLink,
+                PhotoLink = model.ImageLink,
                 FormalLink = model.FormalLink
             };
         }
@@ -51,7 +51,7 @@ namespace A2.Web.SportNews.Core.Mappers
             {
                 Id = model.Id,
                 FullName = model.FullName,
-                PhotoLink = model.PhotoLink,
+                ImageLink = model.PhotoLink,
                 FormalLink = model.FormalLink
             };
         }
