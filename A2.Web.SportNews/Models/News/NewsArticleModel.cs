@@ -1,4 +1,5 @@
 ﻿using System;
+using A2.Web.SportNews.Models.Common;
 
 namespace A2.Web.SportNews.Models.News
 {

@@ -51,7 +51,7 @@ namespace A2.Web.SportNews.Controllers
         [HttpPost, Route("create"), DisableRequestSizeLimit]
         public ActionResult CreateArticle([FromBody] NewsCreateRequestModel model)
         {
-            _newsService.AddArticle(model.ToCore(), model.ImageFile);
+            _newsService.AddArticle(model.ToCore(), model.Image.ToCore());
 
             return new OkResult();
         }

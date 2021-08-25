@@ -1,5 +1,5 @@
 ﻿using System;
-using Microsoft.AspNetCore.Http;
+using A2.Web.SportNews.Models.Common;
 
 namespace A2.Web.SportNews.Models.News
 {
@@ -9,6 +9,7 @@ namespace A2.Web.SportNews.Models.News
         public string TextPreview { get; set; } 
         public string Content { get; set; }
         public string ImageFile { get; set; }
+        public FileInfoModel Image { get; set; }
         public DateTime? PublishDate { get; set; }
     }
 }

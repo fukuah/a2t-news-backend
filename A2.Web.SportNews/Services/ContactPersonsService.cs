@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using A2.Web.SportNews.Abstract;
@@ -26,29 +25,29 @@ namespace A2.Web.SportNews.Services
             return (await _repository.GetEntities())?.Select(x => x.ToCore()).ToList();
         }
 
-        public async Task UpdateContact(ContactPersonCore contact, string fileB64)
+        public async Task UpdateContact(ContactPersonCore contact, FileInfoCore fileInfo)
         {
             if (contact.Id == default)
                 throw new ArgumentException(nameof(contact));
 
-            if (!string.IsNullOrWhiteSpace(fileB64))
-                contact.PhotoLink = Path.GetRandomFileName() + ".png";
+            if (fileInfo != null && !string.IsNullOrWhiteSpace(fileInfo.Name) && !string.IsNullOrWhiteSpace(fileInfo.FileB64))
+                contact.PhotoLink = fileInfo.Name;
 
             _repository.Update(contact.ToEntity());
 
             if (!string.IsNullOrWhiteSpace(contact.PhotoLink))
-                await _fileUploadService.Upload(contact.PhotoLink, fileB64);
+                await _fileUploadService.Upload(contact.PhotoLink, fileInfo.FileB64);
         }
 
-        public async Task AddContact(ContactPersonCore contact, string fileB64)
+        public async Task AddContact(ContactPersonCore contact, FileInfoCore fileInfo)
         {
-            if (!string.IsNullOrWhiteSpace(fileB64))
-                contact.PhotoLink = Path.GetRandomFileName() + ".png";
+            if (fileInfo != null && !string.IsNullOrWhiteSpace(fileInfo.Name) && !string.IsNullOrWhiteSpace(fileInfo.FileB64))
+                contact.PhotoLink = fileInfo.Name;
 
             _repository.Add(contact.ToEntity());
 
             if (!string.IsNullOrWhiteSpace(contact.PhotoLink))
-                await _fileUploadService.Upload(contact.PhotoLink, fileB64);
+                await _fileUploadService.Upload(contact.PhotoLink, fileInfo.FileB64);
         }
 
         public void DeleteContact(int id)

@@ -37,16 +37,16 @@ namespace A2.Web.SportNews.Services
 
         public async Task<NewsCore> GetNewsByIdAsync(int id) => (await _newsRepository.GetEntity(id)).ToCore();
 
-        public async Task AddArticle(NewsCore article, string fileB64)
+        public async Task AddArticle(NewsCore article, FileInfoCore fileInfo)
         {
-            var hasNewFile = !string.IsNullOrWhiteSpace(fileB64) && !string.IsNullOrWhiteSpace(article.ImageLink);
+            var hasNewFile = fileInfo != null && !string.IsNullOrWhiteSpace(fileInfo.Name) && !string.IsNullOrWhiteSpace(fileInfo.FileB64);
             if (hasNewFile)
-                article.ImageLink = Path.GetRandomFileName() + ".png";
+                article.ImageLink = fileInfo.Name;
 
             _newsRepository.Add(article.ToEntity());
 
             if(hasNewFile)
-                await _fileUploadService.Upload(article.ImageLink, fileB64);
+                await _fileUploadService.Upload(article.ImageLink, fileInfo.FileB64);
         }
 
         public void DeleteArticle(int id)

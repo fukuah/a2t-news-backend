@@ -44,16 +44,16 @@ namespace A2.Web.SportNews.Controllers
         [HttpPost, Route("create"), DisableRequestSizeLimit]
         public ActionResult AddContact(ContactPersonCreateRequestModel model)
         {
-            _personsService.AddContact(model.ToCore(), model.PhotoFile);
+            _personsService.AddContact(model.ToCore(), model.Photo.ToCore());
 
             return new OkResult();
         }
 
         [Authorize]
         [HttpPut, Route("{id}"), DisableRequestSizeLimit]
-        public ActionResult UpdateContact(ContactPersonModel model)
+        public ActionResult UpdateContact(ContactPersonUpdateRequestModel model)
         {
-            _personsService.UpdateContact(model.ToCore(), model.PhotoFile);
+            _personsService.UpdateContact(model.ToCore(), model.Photo.ToCore());
 
             return new OkResult();
         }

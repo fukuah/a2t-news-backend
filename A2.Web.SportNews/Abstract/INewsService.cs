@@ -11,7 +11,7 @@ namespace A2.Web.SportNews.Abstract
 
         Task<NewsCore> GetNewsByIdAsync(int id);
 
-        Task AddArticle(NewsCore article, string fileB64);
+        Task AddArticle(NewsCore article, FileInfoCore fileInfo);
         void DeleteArticle(int id);
     }
 }

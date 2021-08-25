@@ -1,6 +1,6 @@
 {
   "App": {
-    "FileSavePath": "C:/Users/zorin/source/repos/A2.Web.SportNews/A2.Web.SportNews/Resources/Images"
+    "FileSaveAbsolutePath": "C:/Users/zorin/source/repos/A2.Web.SportNews/A2.Web.SportNews/Resources/Images"
   },
   "CorsPolicy": {
     "Key": "AllowAny",

@@ -7,12 +7,13 @@ namespace A2.Web.SportNews.Core.Mappers
     {
         public static NewsPageRequest ToCore(this NewsPageRequestModel model)
         {
+            if (model == null) return null;
+
             return new NewsPageRequest
             {
                 Limit = model.Limit,
                 Offset = model.Offset
             };
         }
-
     }
 }

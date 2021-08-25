@@ -10,6 +10,8 @@ namespace A2.Web.SportNews.Core.Mappers
     {
         public static PaginationModel<NewsPreviewModel> ToModel(this Pagination<NewsCore> cores)
         {
+            if (cores == null) return null;
+
             return new PaginationModel<NewsPreviewModel>
             {
                 Count = cores.Count,
@@ -21,6 +23,8 @@ namespace A2.Web.SportNews.Core.Mappers
 
         public static PaginationModel<NewsItemModel> ToItemModel(this Pagination<NewsCore> cores)
         {
+            if (cores == null) return null;
+
             return new PaginationModel<NewsItemModel>
             {
                 Count = cores.Count,
@@ -32,6 +36,8 @@ namespace A2.Web.SportNews.Core.Mappers
 
         public static NewsPreviewModel ToModel(this NewsCore core)
         {
+            if (core == null) return null;
+
             return new NewsPreviewModel
             {
                 Id = core.Id,
@@ -44,6 +50,8 @@ namespace A2.Web.SportNews.Core.Mappers
 
         public static NewsItemModel ToItemModel(this NewsCore core)
         {
+            if (core == null) return null;
+
             return new NewsItemModel
             {
                 Id = core.Id,
@@ -54,6 +62,8 @@ namespace A2.Web.SportNews.Core.Mappers
 
         public static NewsArticleModel ToArticleModel(this NewsCore core)
         {
+            if (core == null) return null;
+
             return new NewsArticleModel
             {
                 Content = core.Content,
@@ -66,6 +76,8 @@ namespace A2.Web.SportNews.Core.Mappers
 
         public static NewsCore ToCore(this NewsEntity entity)
         {
+            if (entity == null) return null;
+
             return new NewsCore
             {
                 Id = entity.Id,
@@ -80,6 +92,8 @@ namespace A2.Web.SportNews.Core.Mappers
 
         public static NewsCore ToCore(this NewsCreateRequestModel model)
         {
+            if (model == null) return null;
+
             return new NewsCore
             {
                 Content = model.Content,
@@ -92,6 +106,8 @@ namespace A2.Web.SportNews.Core.Mappers
 
         public static NewsEntity ToEntity(this NewsCore core)
         {
+            if (core == null) return null;
+
             return new NewsEntity
             {
                 Content = core.Content,

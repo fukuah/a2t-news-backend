@@ -25,14 +25,14 @@ namespace A2.Web.SportNews.Controllers
         // тестовые данные вместо использования базы данных
         private static readonly List<LoginRequestModel> _users = new List<LoginRequestModel>
         {
-            new LoginRequestModel {Username="admin", PasswordHash="12345"},
-            new LoginRequestModel { Username="qwerty", PasswordHash="55555"}
+            new LoginRequestModel {Username="admin", Password="12345"},
+            new LoginRequestModel { Username="qwerty", Password="55555"}
         };
 
         [HttpPost("/token")]
         public IActionResult Token([FromBody] LoginRequestModel model)
         {
-            var identity = GetIdentity(model.Username, model.PasswordHash);
+            var identity = GetIdentity(model.Username, model.Password);
             if (identity == null)
             {
                 return BadRequest(new { errorText = "Invalid username or password." });
@@ -51,8 +51,9 @@ namespace A2.Web.SportNews.Controllers
 
             var response = new
             {
-                access_token = encodedJwt,
-                username = identity.Name
+                AccessToken = encodedJwt,
+                Username = identity.Name,
+                Lifetime = _authOptions.Lifetime
             };
 
             return Json(response);
@@ -60,7 +61,7 @@ namespace A2.Web.SportNews.Controllers
 
         private ClaimsIdentity GetIdentity(string username, string password)
         {
-            LoginRequestModel person = _users.FirstOrDefault(x => x.Username == username && x.PasswordHash == password);
+            LoginRequestModel person = _users.FirstOrDefault(x => x.Username == username && x.Password == password);
             if (person != null)
             {
                 var claims = new List<Claim>
