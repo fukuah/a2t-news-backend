@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31112.23
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2.Web.SportNews", "A2.Web.SportNews\A2.Web.SportNews.csproj", "{ECA4DB32-72E8-4343-B4BF-A6FF4CBE9793}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "A2.Web.SportNews", "A2.Web.SportNews\A2.Web.SportNews.csproj", "{ECA4DB32-72E8-4343-B4BF-A6FF4CBE9793}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2.Web.SportNews.Auth", "A2.Web.SportNews.Auth\A2.Web.SportNews.Auth.csproj", "{D9A6DAB6-CFD6-49C5-BD12-896D0180C58C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2.Web.SportNews.Options", "A2.Web.SportNews.Options\A2.Web.SportNews.Options\A2.Web.SportNews.Options.csproj", "{535C70E8-4EA8-464B-8352-5F2131927AD3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2.Web.SportNews.Database", "A2.Web.SportNews.Database\A2.Web.SportNews.Database\A2.Web.SportNews.Database.csproj", "{8CFEA105-A09D-431E-9F20-D8DE089C874C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2.Web.SportNews.Api", "A2.Web.SportNews.Api\A2.Web.SportNews.Api\A2.Web.SportNews.Api.csproj", "{731CB3C7-5556-44B7-B76D-0DB5A8AC4355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A2.Web.SportNews.Core", "A2.Web.SportNews.Core\A2.Web.SportNews.Core\A2.Web.SportNews.Core.csproj", "{71AE964A-7130-489E-B925-ECF459D7DB3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{ECA4DB32-72E8-4343-B4BF-A6FF4CBE9793}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ECA4DB32-72E8-4343-B4BF-A6FF4CBE9793}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ECA4DB32-72E8-4343-B4BF-A6FF4CBE9793}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A6DAB6-CFD6-49C5-BD12-896D0180C58C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A6DAB6-CFD6-49C5-BD12-896D0180C58C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A6DAB6-CFD6-49C5-BD12-896D0180C58C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A6DAB6-CFD6-49C5-BD12-896D0180C58C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{535C70E8-4EA8-464B-8352-5F2131927AD3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{535C70E8-4EA8-464B-8352-5F2131927AD3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{535C70E8-4EA8-464B-8352-5F2131927AD3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{535C70E8-4EA8-464B-8352-5F2131927AD3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CFEA105-A09D-431E-9F20-D8DE089C874C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CFEA105-A09D-431E-9F20-D8DE089C874C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CFEA105-A09D-431E-9F20-D8DE089C874C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CFEA105-A09D-431E-9F20-D8DE089C874C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{731CB3C7-5556-44B7-B76D-0DB5A8AC4355}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{731CB3C7-5556-44B7-B76D-0DB5A8AC4355}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{731CB3C7-5556-44B7-B76D-0DB5A8AC4355}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{731CB3C7-5556-44B7-B76D-0DB5A8AC4355}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71AE964A-7130-489E-B925-ECF459D7DB3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71AE964A-7130-489E-B925-ECF459D7DB3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71AE964A-7130-489E-B925-ECF459D7DB3F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71AE964A-7130-489E-B925-ECF459D7DB3F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

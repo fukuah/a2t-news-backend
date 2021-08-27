@@ -1,3 +1,5 @@
+using System;
+using A2.Web.SportNews.Auth;
 using A2.Web.SportNews.Database;
 using A2.Web.SportNews.Modules;
 using A2.Web.SportNews.Options;
@@ -25,7 +27,21 @@ namespace A2.Web.SportNews
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApiContext>(opt => opt.UseInMemoryDatabase("InMemoryDb"));
+            var appOptions = new AppOptions();
+            Configuration.GetSection(AppOptions.SectionName).Bind(appOptions);
+
+            if (appOptions.UseInMemoryDb)
+                services.AddDbContext<ApplicationDbContext>(opt => opt.UseInMemoryDatabase("InMemoryDb"));
+            else
+            {
+                // получаем строку подключения из файла конфигурации
+                if (string.IsNullOrEmpty(appOptions.Connection))
+                    throw new ArgumentException($"The connection to database is not set in config.");
+
+                // добавляем контекст MobileContext в качестве сервиса в приложение
+                services.AddDbContext<ApplicationDbContext>(options =>
+                    options.UseSqlServer(appOptions.Connection));
+            }
 
             services.AddControllers();
             var corsOptions = new CorsPolicyOptions();
@@ -63,7 +79,7 @@ namespace A2.Web.SportNews
                         ValidateLifetime = true,
 
                         // установка ключа безопасности
-                        IssuerSigningKey = authOptions.GetSymmetricSecurityKey(),
+                        IssuerSigningKey = JwtTokenBuilder.GetSymmetricSecurityKey(authOptions.Key),
                         // валидация ключа безопасности
                         ValidateIssuerSigningKey = true,
                     };
@@ -78,9 +94,9 @@ namespace A2.Web.SportNews
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApiContext context)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
         {
-            if (context.Database.IsInMemory())
+            //if (context.Database.IsInMemory())
                 context.Database.EnsureCreated();
 
             if (env.IsDevelopment())

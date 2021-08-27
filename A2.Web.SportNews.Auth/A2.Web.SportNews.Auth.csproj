@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\A2.Web.SportNews.Core\A2.Web.SportNews.Core\A2.Web.SportNews.Core.csproj" />
+    <ProjectReference Include="..\A2.Web.SportNews.Database\A2.Web.SportNews.Database\A2.Web.SportNews.Database.csproj" />
+    <ProjectReference Include="..\A2.Web.SportNews.Options\A2.Web.SportNews.Options\A2.Web.SportNews.Options.csproj" />
+  </ItemGroup>
+
+</Project>
