@@ -11,6 +11,5 @@ namespace A2.Web.SportNews.Database.Repositories
         }
 
         protected override IQueryable<NewsEntity> ApplySort(IQueryable<NewsEntity> query) => query.OrderByDescending(x => x.PublishDate);
-        
     }
 }

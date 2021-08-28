@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using A2.Web.SportNews.Abstract;
 using A2.Web.SportNews.Api.Abstract;
 using A2.Web.SportNews.Core;
 using A2.Web.SportNews.Core.Extensions;
@@ -13,12 +12,12 @@ namespace A2.Web.SportNews.Api.Services
 {
     public class NewsService : INewsService
     {
-        private readonly FileUploadService _fileUploadService;
+        private readonly FileManageService _fileManageService;
         private readonly UnitOfWorkFactory _uowFactory;
 
-        public NewsService(FileUploadService fileUploadService, UnitOfWorkFactory uowFactory)
+        public NewsService(FileManageService fileManageService, UnitOfWorkFactory uowFactory)
         {
-            _fileUploadService = fileUploadService ?? throw new ArgumentNullException(nameof(fileUploadService));
+            _fileManageService = fileManageService ?? throw new ArgumentNullException(nameof(fileManageService));
             _uowFactory = uowFactory ?? throw new ArgumentNullException(nameof(uowFactory));
         }
 
@@ -57,7 +56,7 @@ namespace A2.Web.SportNews.Api.Services
             await uow.SaveChangesAsync();
 
             if(hasNewFile)
-                await _fileUploadService.Upload(article.ImageLink, fileInfo.FileB64);
+                await _fileManageService.UploadAsync(article.ImageLink, fileInfo.FileB64);
         }
 
         public async Task DeleteAsync(int id)

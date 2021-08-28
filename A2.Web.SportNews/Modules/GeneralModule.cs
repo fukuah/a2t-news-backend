@@ -6,6 +6,7 @@ using A2.Web.SportNews.Auth.Abstract;
 using A2.Web.SportNews.Auth.Services;
 using A2.Web.SportNews.Database;
 using Autofac;
+using Microsoft.Extensions.Hosting;
 
 namespace A2.Web.SportNews.Modules
 {
@@ -21,7 +22,8 @@ namespace A2.Web.SportNews.Modules
             builder.RegisterType<PasswordHasher>().As<IPasswordHasher>();
             builder.RegisterType<JwtTokenBuilder>().AsSelf();
             builder.RegisterType<UnitOfWorkFactory>().AsSelf();
-            builder.RegisterType<FileUploadService>().AsSelf();
+            builder.RegisterType<FileManageService>().AsSelf();
+            builder.RegisterType<FileCleaningService>().As<IHostedService>().SingleInstance();
         }
     }
 }

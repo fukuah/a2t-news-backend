@@ -96,8 +96,7 @@ namespace A2.Web.SportNews
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context)
         {
-            //if (context.Database.IsInMemory())
-                context.Database.EnsureCreated();
+            context.Database.EnsureCreated();
 
             if (env.IsDevelopment())
             {

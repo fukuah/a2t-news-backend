@@ -1,7 +1,9 @@
 {
   "App": {
     "FileSaveAbsolutePath": "C:/Users/zorin/source/repos/A2.Web.SportNews/A2.Web.SportNews/Resources/Images",
-    "HashIterations": 1000,
+    "LogSaveAbsolutePath": "C:/Users/zorin/source/repos/A2.Web.SportNews/A2.Web.SportNews/bin/Debug/netcoreapp3.1/logs",
+    "FileCleaningMinutesTimeout": "600",
+    "HashIterations": "1000",
     "UseInMemoryDb": "False",
     "Connection": "Server=(localdb)\\mssqllocaldb;Database=sport_news;Trusted_Connection=True;"
   },

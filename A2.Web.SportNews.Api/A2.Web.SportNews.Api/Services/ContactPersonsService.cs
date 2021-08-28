@@ -13,11 +13,11 @@ namespace A2.Web.SportNews.Api.Services
     public class ContactPersonsService : IContactPersonsService
     {
         private readonly UnitOfWorkFactory _uowFactory;
-        private readonly FileUploadService _fileUploadService;
+        private readonly FileManageService _fileManageService;
 
-        public ContactPersonsService(FileUploadService fileUploadService, UnitOfWorkFactory uowFactory)
+        public ContactPersonsService(FileManageService fileManageService, UnitOfWorkFactory uowFactory)
         {
-            _fileUploadService = fileUploadService ?? throw new ArgumentNullException(nameof(fileUploadService));
+            _fileManageService = fileManageService ?? throw new ArgumentNullException(nameof(fileManageService));
             _uowFactory = uowFactory ?? throw new ArgumentNullException(nameof(uowFactory));
         }
 
@@ -44,7 +44,7 @@ namespace A2.Web.SportNews.Api.Services
             await uow.SaveChangesAsync();
 
             if (hasNewFile && !string.IsNullOrWhiteSpace(contact.PhotoLink))
-                await _fileUploadService.Upload(contact.PhotoLink, fileInfo.FileB64);
+                await _fileManageService.UploadAsync(contact.PhotoLink, fileInfo.FileB64);
         }
 
         public async Task AddContactAsync(ContactPersonCore contact, FileInfoCore fileInfo)
@@ -61,7 +61,7 @@ namespace A2.Web.SportNews.Api.Services
             await uow.SaveChangesAsync();
 
             if (hasNewFile && !string.IsNullOrWhiteSpace(contact.PhotoLink))
-                await _fileUploadService.Upload(contact.PhotoLink, fileInfo.FileB64);
+                await _fileManageService.UploadAsync(contact.PhotoLink, fileInfo.FileB64);
         }
 
         public async Task DeleteContactAsync(int id)
