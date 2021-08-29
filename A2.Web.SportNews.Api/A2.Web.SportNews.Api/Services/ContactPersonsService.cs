@@ -68,6 +68,7 @@ namespace A2.Web.SportNews.Api.Services
         {
             await using var uow = _uowFactory.Create();
             await uow.ContactsRepository.DeleteAsync(id);
+            await uow.SaveChangesAsync();
         }
     }
 }

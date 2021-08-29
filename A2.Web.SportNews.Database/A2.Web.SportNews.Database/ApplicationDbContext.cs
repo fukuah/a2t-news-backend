@@ -19,62 +19,6 @@ namespace A2.Web.SportNews.Database
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            //modelBuilder.Entity<NewsEntity>().HasData(
-            //    new NewsEntity
-            //    {
-            //        Id = 13,
-            //        Content = "2 AAAAAAAAAAAAA!!!!",
-            //        CreatedTime = DateTime.UtcNow,
-            //        PublishDate = DateTime.UtcNow,
-            //        ImageLink = "",
-            //        TextPreview = "2 A A A A A A 222",
-            //        Title = "2 МЕССИ ЗАБИЛ СЕБЕ В СРАКУ!!!"
-            //    },
-            //    new NewsEntity
-            //    {
-            //        Id = 4,
-            //        Content = "2 УУУУУУУУУУУУУУУУУУУ!!!!",
-            //        CreatedTime = DateTime.UtcNow,
-            //        PublishDate = DateTime.UtcNow,
-            //        ImageLink = "",
-            //        TextPreview = "Б Б Б Б Б 211112",
-            //        Title = "2 МЕССИ ЗАБИЛ СЕБЕ В СРАКУ ДВА МЯЧА!!!"
-            //    },
-            //    new NewsEntity
-            //    {
-            //        Id = 19,
-            //        Content = "ЕЕЕЕЕЕЕЕЕЕЕЕЕЕЕ!!!!",
-            //        CreatedTime = DateTime.UtcNow,
-            //        PublishDate = DateTime.UtcNow,
-            //        ImageLink = "",
-            //        TextPreview = "Ниче се",
-            //        Title = "МЕССИ ЗАБИЛ ГОЛА!!!"
-            //    });
-
-
-            //modelBuilder.Entity<UserEntity>().HasData(
-            //        new []
-            //        {
-            //            new UserEntity
-            //            {
-            //                Id = 1,
-            //                Username = "qwerty",
-            //                PasswordHash = Hash("qwerty")
-            //            },
-            //            new UserEntity
-            //            {
-            //                Id = 2,
-            //                Username = "qwerty1",
-            //                PasswordHash = Hash("qwerty1")
-            //            },
-            //            new UserEntity
-            //            {
-            //                Id = 3,
-            //                Username = "qwerty2",
-            //                PasswordHash = Hash("qwerty2")
-            //            }
-            //        }
-            //    );
         }
 
         #region PasswordHasher dublicate, to generate user password hashes

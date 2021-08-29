@@ -5,14 +5,14 @@
       "launchBrowser": false,
       "launchUrl": "https://localhost:8097",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "local"
+        "ASPNETCORE_ENVIRONMENT": "Local"
       }
     }
   },
   "A2.Web.SportNews": {
     "commandName": "Project",
     "environmentVariables": {
-      "ASPNETCORE_ENVIRONMENT": "local"
+      "ASPNETCORE_ENVIRONMENT": "Local"
     }
   }
 }
